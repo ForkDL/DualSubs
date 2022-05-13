@@ -43,7 +43,7 @@ if (method == "OPTIONS") $.done();
 		// 写入选项
 		PlayList = await setOptions(Platform, PlayList, Cache[Settings.Languages[0]], Cache[Settings.Languages[1]], Settings.Types, standard, Settings.Type);
 		// 字符串M3U8
-		PlayList = (Platform == "Netflix") ? JSON.stringify($response.body) : M3U8.stringify($response.body);
+		PlayList = (Platform == "Netflix") ? $response.body : M3U8.stringify($response.body);
 		$response.body = PlayList;
 	}
 })()
