@@ -346,7 +346,8 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 			let Formats = Object.keys(newSub.downloadableIds);
 			$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `Formats: ${JSON.stringify(Formats)}`, "");
 			// 修改链接
-			newSub.ttDownloadables = Formats.map(format => {
+			//newSub.ttDownloadables =
+				Formats.map(format => {
 				for (let Id in newSub.ttDownloadables[format].downloadUrls) {
 					let downloadUrl = newSub.ttDownloadables[format].downloadUrls[Id]
 					$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `downloadUrl: ${JSON.stringify(downloadUrl)}`, "");
@@ -355,7 +356,7 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 					newSub.ttDownloadables[format].downloadUrls[Id] = downloadUrl;
 				}
 				$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `newSub.ttDownloadables.${format}: ${JSON.stringify(newSub.ttDownloadables[format])}`, "");
-				return newSub.ttDownloadables
+				//return newSub.ttDownloadables[format]
 			})
 			$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `newSub: ${JSON.stringify(newSub)}`, "");
 			return newSub
