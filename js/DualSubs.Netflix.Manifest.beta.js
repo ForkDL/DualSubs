@@ -291,15 +291,15 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 	for await (var obj1 of Languages1) {
 		for await (var obj2 of Languages2) {
 			// 无首选字幕时
-			if (!obj1?.EXT && !obj1?.type) {
+			if (!obj1?.id && !obj1?.language) {
 				// 无首选语言时删除官方字幕选项
 				Types = Types.filter(e => e !== "Official");
 				Options = await getOptions(Platform, obj1, obj2, Types, Standard);
 				if (Options.length !== 0) {
 					// 计算位置
-					let Index = await getIndex(Platform, Json, obj2);
+					let Index = await getIndex(Platform, Json.result.timedtexttracks, obj2);
 					// 插入字幕选项
-					await insertOptions(Json, Index, Options, Standard);
+					await insertOptions(Json.result.timedtexttracks, Index, Options, Standard);
 				};
 			}
 			else if (obj2?.OPTION?.FORCED !== "YES") { // 强制字幕不生成
@@ -319,9 +319,9 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 					$.log(`🎉 ${$.name}, Set DualSubs Subtitle Options`, `Options: ${JSON.stringify(Options)}`, "");
 					if (Options.length !== 0) {
 						// 计算位置
-						let Index = await getIndex(Platform, Json, obj1);
+						let Index = await getIndex(Platform, Json.result.timedtexttracks, obj1);
 						// 插入字幕选项
-						await insertOptions(Json, Index, Options, Standard);
+						await insertOptions(Json.result.timedtexttracks, Index, Options, Standard);
 					};
 				};
 			};
@@ -365,7 +365,7 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 	async function getIndex(platform, json, obj) {
 		$.log(`⚠ ${$.name}, Get Same Options Index`, "");
 		// 计算位置
-		let Index = json.body.findIndex(item => {
+		let Index = json.findIndex(item => {
 			if (platform === "Netflix") {
 				if (item?.language == obj?.language
 					&& item?.id == obj?.id) {
@@ -380,8 +380,8 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 	async function insertOptions(json, index, options, standard) {
 		$.log(`⚠ ${$.name}, Insert Options`, "");
 		// 插入字幕选项
-		if (standard == true) json.body.splice(index + 1, 0, ...options)
-		else json.body.splice(index, 1, ...options); // 兼容性设置
+		if (standard == true) json.splice(index + 1, 0, ...options)
+		else json.splice(index, 1, ...options); // 兼容性设置
 	};
 };
 
