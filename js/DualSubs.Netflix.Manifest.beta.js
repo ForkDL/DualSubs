@@ -338,7 +338,7 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 			let newSub = (obj1?.id) ? JSON.parse(JSON.stringify(obj1))
 				: JSON.parse(JSON.stringify(obj2))
 			// 修改名称
-			newSub.languageDescription = `\"${obj1.languageDescription}/${obj2.languageDescription} [${type}]\"`
+			newSub.languageDescription = `${obj1.languageDescription}/${obj2.languageDescription} [${type}]`
 			// 修改语言代码
 			newSub.language = (platform == "Apple" || platform == "Disney_Plus" || platform == "Hulu" || platform == "Paramount_Plus" || platform == "Discovery_Plus_Ph") ? `${obj1.language}/${obj2.language}[${type}]`
 				: (standard) ? obj1.language : obj2.language
