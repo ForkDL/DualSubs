@@ -43,7 +43,7 @@ if (method == "OPTIONS") $.done();
 		// 写入选项
 		PlayList = await setOptions(Platform, PlayList, Cache[Settings.Languages[0]], Cache[Settings.Languages[1]], Settings.Types, standard, Settings.Type);
 		// 字符串M3U8
-		PlayList = M3U8.stringify(PlayList);
+		PlayList = (Platform == "Netflix") ? JSON.stringify($response.body) : M3U8.stringify($response.body);
 		$response.body = PlayList;
 	}
 })()
@@ -302,9 +302,9 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 					await insertOptions(Json.result.timedtexttracks, Index, Options, Standard);
 				};
 			}
-			else if (obj2?.OPTION?.FORCED !== "YES") { // 强制字幕不生成
+			else if (obj2?.isForcedNarrative !== true) { // 强制字幕不生成
 				//$.log(`🚧 ${$.name}`, "obj2?.OPTION.FORCED", obj2?.OPTION.FORCED, "");
-				if (obj1?.OPTION?.["GROUP-ID"] == obj2?.OPTION?.["GROUP-ID"]) { // 只生成同组字幕
+				if (obj1?.trackType == obj2?.trackType) { // 只生成同组字幕
 					//$.log(`🚧 ${$.name}`, "obj1?.OPTION[\"GROUP-ID\"]", obj1?.OPTION["GROUP-ID"], "");
 					//$.log(`🚧 ${$.name}`, "obj2?.OPTION[\"GROUP-ID\"]", obj2?.OPTION["GROUP-ID"], "");
 					// 创建字幕选项
