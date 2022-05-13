@@ -355,7 +355,7 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 					newSub.ttDownloadables[format].downloadUrls[Id] = downloadUrl;
 				}
 				$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `newSub.ttDownloadables.${format}: ${JSON.stringify(newSub.ttDownloadables[format])}`, "");
-				return newSub.ttDownloadables[format]
+				return newSub.ttDownloadables
 			})
 			$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `newSub: ${JSON.stringify(newSub)}`, "");
 			return newSub
