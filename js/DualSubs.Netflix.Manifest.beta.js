@@ -321,7 +321,8 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 						// 计算位置
 						let Index = await getIndex(Platform, Json.result.timedtexttracks, obj1);
 						// 插入字幕选项
-						await insertOptions(Json.result.timedtexttracks, Index, Options, Standard);
+						//await insertOptions(Json.result.timedtexttracks, Index, Options, Standard);
+						await insertOptions(Json.result.timedtexttracks, Index, Options, false);
 					};
 				};
 			};
