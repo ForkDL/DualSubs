@@ -341,10 +341,10 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 			// 修改名称
 			newSub.languageDescription = `${obj1.languageDescription}/${obj2.languageDescription} [${type}]`
 			// 测试
-			newSub.id = newSub.id + type
-			newSub.new_track_id = newSub.new_track_id.replace(newSub.language, type);
+			//newSub.id = newSub.id + type
+			//newSub.new_track_id = newSub.new_track_id.replace(newSub.language, type);
 			// 修改语言代码
-			newSub.language = (platform == "Netflix" || platform == "Apple" || platform == "Disney_Plus" || platform == "Hulu" || platform == "Paramount_Plus" || platform == "Discovery_Plus_Ph") ? `${obj1.language}/${obj2.language}[${type}]`
+			newSub.language = (platform == "Apple" || platform == "Disney_Plus" || platform == "Hulu" || platform == "Paramount_Plus" || platform == "Discovery_Plus_Ph") ? `${obj1.language}/${obj2.language}[${type}]`
 				: (standard) ? obj1.language : obj2.language
 			// 查询字幕类型
 			let Formats = Object.keys(newSub.downloadableIds);
