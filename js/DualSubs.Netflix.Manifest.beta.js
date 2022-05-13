@@ -340,8 +340,10 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 			// 修改名称
 			newSub.languageDescription = `${obj1.languageDescription}/${obj2.languageDescription} [${type}]`
 			// 修改语言代码
-			newSub.language = (platform == "Apple" || platform == "Disney_Plus" || platform == "Hulu" || platform == "Paramount_Plus" || platform == "Discovery_Plus_Ph") ? `${obj1.language}/${obj2.language}[${type}]`
+			newSub.language = (platform == "Netflix" || platform == "Apple" || platform == "Disney_Plus" || platform == "Hulu" || platform == "Paramount_Plus" || platform == "Discovery_Plus_Ph") ? `${obj1.language}/${obj2.language}[${type}]`
 				: (standard) ? obj1.language : obj2.language
+			// 测试
+			//newSub.id = newSub.id + type
 			// 查询字幕类型
 			let Formats = Object.keys(newSub.downloadableIds);
 			$.log(`🎉 ${$.name}, Get DualSubs Subtitle Options`, `Formats: ${JSON.stringify(Formats)}`, "");
