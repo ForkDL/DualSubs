@@ -366,12 +366,11 @@ async function setOptions(Platform = "", Json = {}, Languages1 = [], Languages2 
 		$.log(`⚠ ${$.name}, Get Same Options Index`, "");
 		// 计算位置
 		let Index = json.body.findIndex(item => {
-			if (item?.OPTION?.LANGUAGE == obj?.OPTION?.LANGUAGE
-				&& item?.OPTION?.["GROUP-ID"] == obj?.OPTION?.["GROUP-ID"]
-				&& item?.OPTION?.CHARACTERISTICS == obj?.OPTION?.CHARACTERISTICS) {
-				if (platform == "Apple") {
-					if (item?.OPTION?.["STABLE-RENDITION-ID"] == obj?.OPTION?.["STABLE-RENDITION-ID"]) return true
-				} else return true
+			if (platform === "Netflix") {
+				if (item?.language == obj?.language
+					&& item?.id == obj?.id) {
+					return true
+				}
 			}
 		})
 		$.log(`🎉 ${$.name}, Get Same Options Index`, `Index: ${Index}`, "");
